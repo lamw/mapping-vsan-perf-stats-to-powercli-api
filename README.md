@@ -1,5 +1,7 @@
 # Correlating vSAN perf metrics from vSphere Web Client to both PowerCLI & vSAN Mgmt API
 
+For more details, please refer to this blog post [here](http://www.virtuallyghetto.com/2017/04/correlating-vsan-perf-metrics-from-vsphere-web-client-to-both-powercli-vsan-mgmt-api.html)
+
 **vSAN Performance Metrics found in the vSphere Cluster UI**
 
 * [Cluster: vSAN Virtual Machine Consumption](#cluster-vsan-virtual-machine-consumption)
