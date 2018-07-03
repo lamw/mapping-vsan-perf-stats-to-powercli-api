@@ -438,19 +438,30 @@ t10.NVMe____SAMSUNG_MZ... Performance.DeviceRead... 4/21/2017 3:50:00 PM      2
 
 ### Metrics
 
-| Metric Type             | Metric                           | PowerCLI                    | vSAN Mgmt API Entity | vSAN Mgmt API Metric |
-|-------------------------|----------------------------------|-----------------------------|----------------------|----------------------|
-| pNIC Throughput         | pNIC Throughput Inbound          | (NOT CURRENTLY IN POWERCLI) | vsan-pnic-net        | rxThroughput         |
-| pNIC Throughput         | pNIC Throughput Outbound         | (NOT CURRENTLY IN POWERCLI) | vsan-pnic-net        | txThroughput         |
-| pNIC Packets Per Second | pNIC Inbound Packets Per Second  | (NOT CURRENTLY IN POWERCLI) | vsan-pnic-net        | rxPackets            |
-| pNIC Packets Per Second | pNIC Outbound Packets Per Second | (NOT CURRENTLY IN POWERCLI) | vsan-pnic-net        | txPackets            |
-| pNIC Packets Loss Rate  | pNIC Inbound Packets Loss Rate   | (NOT CURRENTLY IN POWERCLI) | vsan-pnic-net        | rxPacketsLossRate    |
-| pNIC Packets Loss Rate  | pNIC Outbound Packets Loss Rate  | (NOT CURRENTLY IN POWERCLI) | vsan-pnic-net        | txPacketsLossRate    |
+| Metric Type             | Metric                           | PowerCLI                                    | vSAN Mgmt API Entity | vSAN Mgmt API Metric |
+|-------------------------|----------------------------------|---------------------------------------------|----------------------|----------------------|
+| pNIC Throughput         | pNIC Throughput Inbound          | Performance.NetworkInboundThroughput        | vsan-pnic-net        | rxThroughput         |
+| pNIC Throughput         | pNIC Throughput Outbound         | Performance.NetworkOutboundThroughput       | vsan-pnic-net        | txThroughput         |
+| pNIC Packets Per Second | pNIC Inbound Packets Per Second  | Performance.NetworkInboundPacketsPerSecond  | vsan-pnic-net        | rxPackets            |
+| pNIC Packets Per Second | pNIC Outbound Packets Per Second | Performance.NetworkOutboundPacketsPerSecond | vsan-pnic-net        | txPackets            |
+| pNIC Packets Loss Rate  | pNIC Inbound Packets Loss Rate   | Performance.NetworkInboundPacketsLossRate   | vsan-pnic-net        | rxPacketsLossRate    |
+| pNIC Packets Loss Rate  | pNIC Outbound Packets Loss Rate  | Performance.NetworkOutboundPacketsLossRate  | vsan-pnic-net        | txPacketsLossRate    |
 
 ### PowerCLI Sample for Host: vSAN VMkernel Adapters
 
 ```code
-Currently not available in PowerCLI
+$pnics= Get-VMHostNetworkAdapter -VMHost "192.168.30.10" -Physical
+Get-VsanStat -Entity $pnics[0] -StartTime "7/3/2018 4:50:00 AM" -EndTime "7/3/2018 5:20:00 AM"
+
+Entity                    Name                      Time                           Value
+------                    ----                      ----                           -----
+vmnic0                    Performance.NetworkInb... 7/3/2018 4:50:00 AM             2151
+vmnic0                    Performance.NetworkInb... 7/3/2018 4:55:00 AM             2429
+vmnic0                    Performance.NetworkInb... 7/3/2018 5:00:00 AM            42066
+vmnic0                    Performance.NetworkInb... 7/3/2018 5:05:00 AM             2054
+vmnic0                    Performance.NetworkInb... 7/3/2018 5:10:00 AM             2087
+vmnic0                    Performance.NetworkInb... 7/3/2018 5:15:00 AM             2100
+vmnic0                    Performance.NetworkInb... 7/3/2018 5:20:00 AM             2131
 ```
 
 ## Host: vSAN VMkernel Adapters
@@ -459,19 +470,30 @@ Currently not available in PowerCLI
 
 ### Metrics
 
-| Metric Type                                 | Metric                      | PowerCLI                    | vSAN Mgmt API Entity | vSAN Mgmt API Metric |
-|---------------------------------------------|-----------------------------|-----------------------------|----------------------|----------------------|
-| VMkernel Network Adapter Throughput         | Throughput Inbound          | (NOT CURRENTLY IN POWERCLI) | vsan-vnic-net        | rxThroughput         |
-| VMkernel Network Adapter Throughput         | Throughput Outbound         | (NOT CURRENTLY IN POWERCLI) | vsan-vnic-net        | txThroughput         |
-| VMkernel Network Adapter Packets Per Second | Inbound Packets Per Second  | (NOT CURRENTLY IN POWERCLI) | vsan-vnic-net        | rxPackets            |
-| VMkernel Network Adapter Packets Per Second | Outbound Packets Per Second | (NOT CURRENTLY IN POWERCLI) | vsan-vnic-net        | txPackets            |
-| VMkernel Network Adapter Packets Loss Rate  | Inbound Packets Loss Rate   | (NOT CURRENTLY IN POWERCLI) | vsan-vnic-net        | rxPacketsLossRate    |
-| VMkernel Network AdapterPackets Loss Rate   | Outbound Packets Loss Rate  | (NOT CURRENTLY IN POWERCLI) | vsan-vnic-net        | txPacketsLossRate    |
+| Metric Type                                 | Metric                      | PowerCLI                                    | vSAN Mgmt API Entity | vSAN Mgmt API Metric |
+|---------------------------------------------|-----------------------------|---------------------------------------------|----------------------|----------------------|
+| VMkernel Network Adapter Throughput         | Throughput Inbound          | Performance.NetworkInboundThroughput        | vsan-vnic-net        | rxThroughput         |
+| VMkernel Network Adapter Throughput         | Throughput Outbound         | Performance.NetworkOutboundThroughput       | vsan-vnic-net        | txThroughput         |
+| VMkernel Network Adapter Packets Per Second | Inbound Packets Per Second  | Performance.NetworkInboundPacketsPerSecond  | vsan-vnic-net        | rxPackets            |
+| VMkernel Network Adapter Packets Per Second | Outbound Packets Per Second | Performance.NetworkOutboundPacketsPerSecond | vsan-vnic-net        | txPackets            |
+| VMkernel Network Adapter Packets Loss Rate  | Inbound Packets Loss Rate   | Performance.NetworkInboundPacketsLossRate   | vsan-vnic-net        | rxPacketsLossRate    |
+| VMkernel Network AdapterPackets Loss Rate   | Outbound Packets Loss Rate  | Performance.NetworkOutboundPacketsLossRate  | vsan-vnic-net        | txPacketsLossRate    |
 
 ### PowerCLI Sample for Host: vSAN VMkernel Adapters
 
 ```code
-Currently not available in PowerCLI
+$vnics= Get-VMHostNetworkAdapter -VMHost "192.168.30.10" -VMKernel
+Get-VsanStat -Entity $vnics[0] -StartTime "7/3/2018 4:50:00 AM" -EndTime "7/3/2018 5:20:00 AM"
+
+Entity                    Name                      Time                           Value
+------                    ----                      ----                           -----
+vmk0                      Performance.NetworkInb... 7/3/2018 4:50:00 AM             1259
+vmk0                      Performance.NetworkInb... 7/3/2018 4:55:00 AM             2342
+vmk0                      Performance.NetworkInb... 7/3/2018 5:00:00 AM             1622
+vmk0                      Performance.NetworkInb... 7/3/2018 5:05:00 AM             1044
+vmk0                      Performance.NetworkInb... 7/3/2018 5:10:00 AM             1239
+vmk0                      Performance.NetworkInb... 7/3/2018 5:15:00 AM             1087
+vmk0                      Performance.NetworkInb... 7/3/2018 5:20:00 AM             1229
 ```
 
 ## Host: vSAN VMkernel Adapters Aggregation
