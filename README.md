@@ -1,6 +1,6 @@
 # Correlating vSAN perf metrics from vSphere Web Client to both PowerCLI & vSAN Mgmt API
 
-For more details, please refer to this blog post [here](http://www.virtuallyghetto.com/2017/04/correlating-vsan-perf-metrics-from-vsphere-web-client-to-both-powercli-vsan-mgmt-api.html)
+For more details, please refer to this blog post [here](https://williamlam.com/2017/05/correlating-vsan-perf-metrics-from-vsphere-web-client-to-both-powercli-vsan-mgmt-api.html)
 
 **vSAN Performance Metrics found in the vSphere Cluster UI**
 
@@ -288,82 +288,83 @@ Entity                    Name                      Time                      Va
 
 ### Metrics
 
-| Frontend (Guest) IOPS        | Frontend Read IOPS             | Performance.ReadCacheWriteIops             | disk-group | iopsRead                 |
-|------------------------------|--------------------------------|--------------------------------------------|------------|--------------------------|
-| Frontend (Guest) IOPS        | Frontend Write IOPS            | Performance.WriteBufferReadIops            | disk-group | iopsWrite                |
-| Frontend (Guest) IOPS        | Read Cache Read IOPS           | Performance.ReadCacheReadIops              | disk-group | iopsRcRead               |
-| Frontend (Guest) IOPS        | Write Buffer Write IOPS        | Performance.WriteBufferWriteIops           | disk-group | iopsWbWrite              |
-| Frontend (Guest) Throughput  | Frontend Read Throughput       | Performance.ReadThroughput                 | disk-group | throughputRead           |
-| Frontend (Guest) Throughput  | Frontend Write Throughput      | Performance.WriteThroughput                | disk-group | throughputWrite          |
-| Frontend (Guest) Latency     | Frontend Read Latency          | Performance.AverageReadLatency             | disk-group | latencyAvgRead           |
-| Frontend (Guest) Latency     | Frontend Write Latency         | Performance.AverageWriteLatency            | disk-group | latencyAvgWrite          |
-| Frontend (Guest) Latency     | Read Cache Read Latency        | Performance.ReadCacheReadLatency           | disk-group | latencyAvgRcRead         |
-| Frontend (Guest) Latency     | Write Buffer Write Latency     | Performance.WriteBufferEriteLatency        | disk-group | latencyAvgWbWrite        |
-| Overhead IOPS                | Read Cache Write IOPS          | (MISSING IN POWERCLI)                      | disk-group | iopsRcWrite              |
-| Overhead IOPS                | Write Buffer Read IOPS         | (MISSING IN POWERCLI)                      | disk-group | iopsWbRead               |
-| Overhead IO Latency          | Read Cache Write Latency       | Performance.ReadCacheWriteLatency          | disk-group | latencyRcWrite           |
-| Overhead IO Latency          | Write Buffer Read Latency      | Performance.WriteBufferReadLatency         | disk-group | latencyWbRead            |
-| Read Cache Hit Rate          | Read Cache Hit Rate            | Performance.ReadCacheHitRate               | disk-group | rcHitRate                |
-| Evictions                    | Cache Invalidations            | Performance.CacheInvalidations             | disk-group | warEvictions             |
-| Evictions                    | Evictions                      | Performance.Evictions                      | disk-group | quotaEvictions           |
-| Write Buffer Free Percentage | Write Buffer Free Percentage   | Performance.WriteBufferFreePercentage      | disk-group | wbFreePct                |
-| Capacity and Usage           | Capacity                       | Performance.Capacity                       | disk-group | capacity                 |
-| Capacity and Usage           | Used Capacity                  | Performance.UsedCapacity                   | disk-group | capacityUsed             |
-| Capacity and Usage           | Reserved Capacity              | Performance.CapacityReserved               | disk-group | capacityReserved         |
-| Capacity and Usage           | Read Cache Size                | Performance.ReadCacheSize                  | disk-group | rcSize                   |
-| Capacity and Usage           | Write Buffer Size              | Performance.WriteBufferSize                | disk-group | wbSize                   |
-| Cached Disk De-stage Rate    | Bytes De-stage from SSD        | Performance.DrainedSsdBytes                | disk-group | ssdBytesDrained          |
-| Cached Disk De-stage Rate    | Zero-Bytes De-stage            | Performance.ZeroBytesDrained               | disk-group | zeroBytesDrained         |
-| Congestions                  | Mem-Congestion                 | Performance.MemoryCongestion               | disk-group | memCongestion            |
-| Congestions                  | Slab-Congestion                | Performance.SlabCongestion                 | disk-group | slabCongestion           |
-| Congestions                  | SSD-Congestion                 | Performance.SsdCongestion                  | disk-group | ssdCongestion            |
-| Congestions                  | IOPS-Congestion                | Performance.IopsCongestion                 | disk-group | iopsCongestion           |
-| Congestions                  | Log-Congestion                 | (MISSING IN POWERCLI)                      | disk-group | logCongestion            |
-| Congestions                  | Comp-Congestion                | Performance.CompCongestion                 | disk-group | compCongestion           |
-| Outstanding IO               | Outstanding Write OPS          | Performance.WriteOutStandingIO             | disk-group | oioWrite                 |
-| Outstanding IO               | Outstanding Recovery Write OPS | Performance.RecoveryWriteOutstandingIO     | disk-group | oioRecWrite              |
-| Outstanding IO Size          | Outstanding Write IO Sizes     | Performance.OutstandingIOWriteSize         | disk-group | oioWriteSize             |
-| Outstanding IO Size          | Outstanding Recovery IO Sizes  | Performance.OutstandingRecoveryWriteIOSize | disk-group | oioRecWriteSize          |
-| Delayed IO Percentage        | Delayed IO Percentage          | Performance.DelayedIOPercentage            | disk-group | iopsDelayPctSched        |
-| Delayed IO Average Latency   | Delayed IO Average Latency     | Performance.DelayedIOAverageLatency        | disk-group | latencyDelaySched        |
-| Delayed IO Average Latency   | Latency of Namespace Queue     | Performance.QueueLatency                   | disk-group | latencySchedQueueNS      |
-| Delayed IO Average Latency   | Latency of Recovery Queue      | Performance.RecoveryQueueLatency           | disk-group | latencySchedQueueRec     |
-| Delayed IO Average Latency   | Latency of VM Queue            | Performance.VMQueueLatency                 | disk-group | latencySchedQueueVM      |
-| Delayed IO Average Latency   | Latency of Meta Queue          | Performance.MetaQueueLatency               | disk-group | latencySchedQueueMeta    |
-| Delayed IOPS                 | Total Delayed IOPS             | Performance.DelayedIops                    | disk-group | iopsSched                |
-| Delayed IOPS                 | IOPS of Namespace Queue        | (MISSING IN POWERCLI)                      | disk-group | iopsSchedQueueNS         |
-| Delayed IOPS                 | IOPS of Recovery Queue         | Performance.RecoveryQueueIops              | disk-group | iopsSchedQueueRec        |
-| Delayed IOPS                 | IOPS of VM Queue               | Performance.VMQueueIops                    | disk-group | iopsSchedQueueVM         |
-| Delayed IOPS                 | IOPS of Meta Queue             | Performance.MetaQueueIops                  | disk-group | iopsSchedQueueMeta       |
-| Delayed IO Throughput        | Total Queue Throughput         | Performance.QueueThroughput                | disk-group | throughputSched          |
-| Delayed IO Throughput        | Throughput of Namespace Queue  | (MISSING IN POWERCLI)                      | disk-group | throughputSchedQueueNS   |
-| Delayed IO Throughput        | Throughput of Recovery Queue   | Performance.RecoveryQueueThroughput        | disk-group | throughputSchedQueueRec  |
-| Delayed IO Throughput        | Throughput of VM Queue         | Performance.VMQueueThroughput              | disk-group | throughputSchedQueueVM   |
-| Delayed IO Throughput        | Throughput of of Meta Queue    | Performance.MetaQueueThroughput            | disk-group | throughputSchedQueueMeta |
-| Resync IOPS                  | Policy Change Read             | Performance.PolicyChangeReadIops           | disk-group | iopsResyncReadPolicy     |
-| Resync IOPS                  | Evacuation Read                | Performance.EvacuationReadIops             | disk-group | iopsResyncReadDecom      |
-| Resync IOPS                  | Rebalance Read                 | Performance.RebalanceReadIops              | disk-group | iopsResyncReadRebalance  |
-| Resync IOPS                  | Repair Read                    | Performance.RepairReadIops                 | disk-group | iopsResyncReadFixComp    |
-| Resync IOPS                  | Policy Change Write            | Performance.PolicyChangeWriteIops          | disk-group | iopsResyncWritePolicy    |
-| Resync IOPS                  | Evacuation Write               | Performance.EvacuationWriteIops            | disk-group | iopsResyncWriteDecom     |
-| Resync IOPS                  | Rebalance Write                | Performance.RebalanceWriteIops             | disk-group | iopsResyncWriteRebalance |
-| Resync IOPS                  | Repair Write                   | Performance.RepairWriteIops                | disk-group | iopsResyncWriteFixComp   |
-| Resync Throughput            | Policy Change Read             | Performance.PolicyChangeReadThroughput     | disk-group | tputResyncReadPolicy     |
-| Resync Throughput            | Evacuation Read                | Performance.EvacuationReadThroughput       | disk-group | tputResyncReadDecom      |
-| Resync Throughput            | Rebalance Read                 | Performance.RebalanceReadThroughput        | disk-group | tputResyncReadRebalance  |
-| Resync Throughput            | Repair Read                    | Performance.RepairReadThroughput           | disk-group | tputResyncReadFixComp    |
-| Resync Throughput            | Policy Change Write            | Performance.PolicyChangeWriteThroughput    | disk-group | tputResyncWritePolicy    |
-| Resync Throughput            | Decommission Write             | Performance.EvacuationWriteThroughput      | disk-group | tputResyncWriteDecom     |
-| Resync Throughput            | Rebalance Write                | Performance.RebalanceWriteThroughput       | disk-group | tputResyncWriteRebalance |
-| Resync Throughput            | Repair Write                   | Performance.RepairWriteThroughput          | disk-group | tputResyncWriteFixComp   |
-| Resync Latency               | Policy Change Read             | Performance.PolicyChangeReadLatency        | disk-group | latResyncReadPolicy      |
-| Resync Latency               | Evacuation Read                | Performance.EvacuationReadLatency          | disk-group | latResyncReadDecom       |
-| Resync Latency               | Rebalance Read                 | Performance.RebalanceReadLatency           | disk-group | latResyncReadRebalance   |
-| Resync Latency               | Repair Read                    | Performance.RepairReadLatency              | disk-group | latResyncReadFixComp     |
-| Resync Latency               | Policy Change Write            | Performance.PolicyChangeWriteLatency       | disk-group | latResyncWritePolicy     |
-| Resync Latency               | Evacuation Write               | Performance.EvacuationWriteLatency         | disk-group | latResyncWriteDecom      |
-| Resync Latency               | Rebalance Write                | Performance.RebalanceWriteLatency          | disk-group | latResyncWriteRebalance  |
-| Resync Latency               | Repair Write                   | Performance.RepairWriteLatency             | disk-group | latResyncWriteFixComp    |
+| Metric Type                  | Metric                         | PowerCLI                                   | vSAN Mgmt API Entity | vSAN Mgmt API Metric     |
+|------------------------------|--------------------------------|--------------------------------------------|----------------------|--------------------------|
+| Frontend (Guest) IOPS        | Frontend READ IOPS             | Performance.ReadCacheWriteIops             | disk-group           | iopsRead                 |
+| Frontend (Guest) IOPS        | Frontend Write IOPS            | Performance.WriteBufferReadIops            | disk-group           | iopsWrite                |
+| Frontend (Guest) IOPS        | Read Cache Read IOPS           | Performance.ReadCacheReadIops              | disk-group           | iopsRcRead               |
+| Frontend (Guest) IOPS        | Write Buffer Write IOPS        | Performance.WriteBufferWriteIops           | disk-group           | iopsWbWrite              |
+| Frontend (Guest) Throughput  | Frontend Read Throughput       | Performance.ReadThroughput                 | disk-group           | throughputRead           |
+| Frontend (Guest) Throughput  | Frontend Write Throughput      | Performance.WriteThroughput                | disk-group           | throughputWrite          |
+| Frontend (Guest) Latency     | Frontend Read Latency          | Performance.AverageReadLatency             | disk-group           | latencyAvgRead           |
+| Frontend (Guest) Latency     | Frontend Write Latency         | Performance.AverageWriteLatency            | disk-group           | latencyAvgWrite          |
+| Frontend (Guest) Latency     | Read Cache Read Latency        | Performance.ReadCacheReadLatency           | disk-group           | latencyAvgRcRead         |
+| Frontend (Guest) Latency     | Write Buffer Write Latency     | Performance.WriteBufferWriteLatency        | disk-group           | latencyAvgWbWrite        |
+| Overhead IOPS                | Read Cache Write IOPS          | Performance.ReadCacheWriteIops             | disk-group           | iopsRcWrite              |
+| Overhead IOPS                | Write Buffer Read IOPS         | Performance.ReadCacheReadIops              | disk-group           | iopsWbRead               |
+| Overhead IO Latency          | Read Cache Write Latency       | Performance.ReadCacheWriteLatency          | disk-group           | latencyRcWrite           |
+| Overhead IO Latency          | Write Buffer Read Latency      | Performance.WriteBufferReadLatency         | disk-group           | latencyWbRead            |
+| Read Cache Hit Rate          | Read Cache Hit Rate            | Performance.ReadCacheHitRate               | disk-group           | rcHitRate                |
+| Evictions                    | Cache Invalidations            | Performance.CacheInvalidations             | disk-group           | warEvictions             |
+| Evictions                    | Evictions                      | Performance.Evictions                      | disk-group           | quotaEvictions           |
+| Write Buffer Free Percentage | Write Buffer Free Percentage   | Performance.WriteBufferFreePercentage      | disk-group           | wbFreePct                |
+| Capacity and Usage           | Capacity                       | Performance.Capacity                       | disk-group           | capacity                 |
+| Capacity and Usage           | Used Capacity                  | Performance.UsedCapacity                   | disk-group           | capacityUsed             |
+| Capacity and Usage           | Reserved Capacity              | Performance.CapacityReserved               | disk-group           | capacityReserved         |
+| Capacity and Usage           | Read Cache Size                | Performance.ReadCacheSize                  | disk-group           | rcSize                   |
+| Capacity and Usage           | Write Buffer Size              | Performance.WriteBufferSize                | disk-group           | wbSize                   |
+| Cached Disk De-stage Rate    | Bytes De-stage from SSD        | Performance.DrainedSsdBytes                | disk-group           | ssdBytesDrained          |
+| Cached Disk De-stage Rate    | Zero-Bytes De-stage            | Performance.ZeroBytesDrained               | disk-group           | zeroBytesDrained         |
+| Congestions                  | Mem-Congestion                 | Performance.MemoryCongestion               | disk-group           | memCongestion            |
+| Congestions                  | Slab-Congestion                | Performance.SlabCongestion                 | disk-group           | slabCongestion           |
+| Congestions                  | SSD-Congestion                 | Performance.SsdCongestion                  | disk-group           | ssdCongestion            |
+| Congestions                  | IOPS-Congestion                | Performance.IopsCongestion                 | disk-group           | iopsCongestion           |
+| Congestions                  | Log-Congestion                 | Performance.LogCongestion                  | disk-group           | logCongestion            |
+| Congestions                  | Comp-Congestion                | Performance.CompCongestion                 | disk-group           | compCongestion           |
+| Outstanding IO               | Outstanding Write OPS          | Performance.WriteOutStandingIO             | disk-group           | oioWrite                 |
+| Outstanding IO               | Outstanding Recovery Write OPS | Performance.RecoveryWriteOutstandingIO     | disk-group           | oioRecWrite              |
+| Outstanding IO Size          | Outstanding Write IO Sizes     | Performance.OutstandingIOWriteSize         | disk-group           | oioWriteSize             |
+| Outstanding IO Size          | Outstanding Recovery IO Sizes  | Performance.OutstandingRecoveryWriteIOSize | disk-group           | oioRecWriteSize          |
+| Delayed IO Percentage        | Delayed IO Percentage          | Performance.DelayedIOPercentage            | disk-group           | iopsDelayPctSched        |
+| Delayed IO Average Latency   | Delayed IO Average Latency     | Performance.DelayedIOAverageLatency        | disk-group           | latencyDelaySched        |
+| Delayed IO Average Latency   | Latency of Namespace Queue     | Performance.QueueLatency                   | disk-group           | latencySchedQueueNS      |
+| Delayed IO Average Latency   | Latency of Recovery Queue      | Performance.RecoveryQueueLatency           | disk-group           | latencySchedQueueRec     |
+| Delayed IO Average Latency   | Latency of VM Queue            | Performance.VMQueueLatency                 | disk-group           | latencySchedQueueVM      |
+| Delayed IO Average Latency   | Latency of Meta Queue          | Performance.MetaQueueLatency               | disk-group           | latencySchedQueueMeta    |
+| Delayed IOPS                 | Total Delayed IOPS             | Performance.DelayedIops                    | disk-group           | iopsSched                |
+| Delayed IOPS                 | IOPS of Namespace Queue        | Performance.NamespaceQueueIops             | disk-group           | iopsSchedQueueNS         |
+| Delayed IOPS                 | IOPS of Recovery Queue         | Performance.RecoveryQueueIops              | disk-group           | iopsSchedQueueRec        |
+| Delayed IOPS                 | IOPS of VM Queue               | Performance.VMQueueIops                    | disk-group           | iopsSchedQueueVM         |
+| Delayed IOPS                 | IOPS of Meta Queue             | Performance.MetaQueueIops                  | disk-group           | iopsSchedQueueMeta       |
+| Delayed IO Throughput        | Total Queue Throughput         | Performance.QueueThroughput                | disk-group           | throughputSched          |
+| Delayed IO Throughput        | Throughput of Namespace Queue  | (MISSING IN POWERCLI)                      | disk-group           | throughputSchedQueueNS   |
+| Delayed IO Throughput        | Throughput of Recovery Queue   | Performance.RecoveryQueueThroughput        | disk-group           | throughputSchedQueueRec  |
+| Delayed IO Throughput        | Throughput of VM Queue         | Performance.VMQueueThroughput              | disk-group           | throughputSchedQueueVM   |
+| Delayed IO Throughput        | Throughput of of Meta Queue    | Performance.MetaQueueThroughput            | disk-group           | throughputSchedQueueMeta |
+| Resync IOPS                  | Policy Change Read             | Performance.PolicyChangeReadIops           | disk-group           | iopsResyncReadPolicy     |
+| Resync IOPS                  | Evacuation Read                | Performance.EvacuationReadIops             | disk-group           | iopsResyncReadDecom      |
+| Resync IOPS                  | Rebalance Read                 | Performance.RebalanceReadIops              | disk-group           | iopsResyncReadRebalance  |
+| Resync IOPS                  | Repair Read                    | Performance.RepairReadIops                 | disk-group           | iopsResyncReadFixComp    |
+| Resync IOPS                  | Policy Change Write            | Performance.PolicyChangeWriteIops          | disk-group           | iopsResyncWritePolicy    |
+| Resync IOPS                  | Evacuation Write               | Performance.EvacuationWriteIops            | disk-group           | iopsResyncWriteDecom     |
+| Resync IOPS                  | Rebalance Write                | Performance.RebalanceWriteIops             | disk-group           | iopsResyncWriteRebalance |
+| Resync IOPS                  | Repair Write                   | Performance.RepairWriteIops                | disk-group           | iopsResyncWriteFixComp   |
+| Resync Throughput            | Policy Change Read             | Performance.PolicyChangeReadThroughput     | disk-group           | tputResyncReadPolicy     |
+| Resync Throughput            | Evacuation Read                | Performance.EvacuationReadThroughput       | disk-group           | tputResyncReadDecom      |
+| Resync Throughput            | Rebalance Read                 | Performance.RebalanceReadThroughput        | disk-group           | tputResyncReadRebalance  |
+| Resync Throughput            | Repair Read                    | Performance.RepairReadThroughput           | disk-group           | tputResyncReadFixComp    |
+| Resync Throughput            | Policy Change Write            | Performance.PolicyChangeWriteThroughput    | disk-group           | tputResyncWritePolicy    |
+| Resync Throughput            | Decommission Write             | Performance.EvacuationWriteThroughput      | disk-group           | tputResyncWriteDecom     |
+| Resync Throughput            | Rebalance Write                | Performance.RebalanceWriteThroughput       | disk-group           | tputResyncWriteRebalance |
+| Resync Throughput            | Repair Write                   | Performance.RepairWriteThroughput          | disk-group           | tputResyncWriteFixComp   |
+| Resync Latency               | Policy Change Read             | Performance.PolicyChangeReadLatency        | disk-group           | latResyncReadPolicy      |
+| Resync Latency               | Evacuation Read                | Performance.EvacuationReadLatency          | disk-group           | latResyncReadDecom       |
+| Resync Latency               | Rebalance Read                 | Performance.RebalanceReadLatency           | disk-group           | latResyncReadRebalance   |
+| Resync Latency               | Repair Read                    | Performance.RepairReadLatency              | disk-group           | latResyncReadFixComp     |
+| Resync Latency               | Policy Change Write            | Performance.PolicyChangeWriteLatency       | disk-group           | latResyncWritePolicy     |
+| Resync Latency               | Evacuation Write               | Performance.EvacuationWriteLatency         | disk-group           | latResyncWriteDecom      |
+| Resync Latency               | Rebalance Write                | Performance.RebalanceWriteLatency          | disk-group           | latResyncWriteRebalance  |
+| Resync Latency               | Repair Write                   | Performance.RepairWriteLatency             | disk-group           | latResyncWriteFixComp    |
 
 ### PowerCLI Sample for Host: vSAN Diskgroup
 
@@ -610,17 +611,17 @@ DeployVM                  Performance.ReadIops      4/22/2017 2:25:00 AM      0
 
 ### Metrics
 
-| Metric Type             | Metric                  | PowerCLI                          | vSAN Mgmt API Entity | vSAN Mgmt API Metric |
-|-------------------------|-------------------------|-----------------------------------|----------------------|----------------------|
-| IOPS and IOPS Limit     | Normalized IOPS Limit   | VirtualDisk.IopsLimit             | virtual-disk         | iopsLimit            |
-| IOPS and IOPS Limit     | Normalized IOPS         | VirtualDisk.NormalizedIops        | virtual-disk         | NIOPS                |
-| Delayed Normalized IOPS | Delayed Normalized IOPS | VirtualDisk.DelayedNormalizedIops | virtual-disk         | NIOPSDelayed         |
-| Virtual SCSI IOPS       | Read IOPS               | (NOT CURRENTLY IN POWERCLI)       | vscsi                | iopsRead             |
-| Virtual SCSI IOPS       | Write IOPS              | (NOT CURRENTLY IN POWERCLI)       | vscsi                | iopsWrite            |
-| Virtual SCSI Throughput | Read Throughput         | (NOT CURRENTLY IN POWERCLI)       | vscsi                | throughputRead       |
-| Virtual SCSI Throughput | Write Throughput        | (NOT CURRENTLY IN POWERCLI)       | vscsi                | throughputWrite      |
-| Virtual SCSI Latency    | Read Latency            | (NOT CURRENTLY IN POWERCLI)       | vscsi                | latencyRead          |
-| Virtual SCSI Latency    | Write Latency           | (NOT CURRENTLY IN POWERCLI)       | vscsi                | latencyWrite         |
+| Metric Type             | Metric                  | PowerCLI                               | vSAN Mgmt API Entity | vSAN Mgmt API Metric |
+|-------------------------|-------------------------|----------------------------------------|----------------------|----------------------|
+| IOPS and IOPS Limit     | Normalized IOPS Limit   | VirtualDisk.IopsLimit                  | virtual-disk         | iopsLimit            |
+| IOPS and IOPS Limit     | Normalized IOPS         | VirtualDisk.NormalizedIops             | virtual-disk         | NIOPS                |
+| Delayed Normalized IOPS | Delayed Normalized IOPS | VirtualDisk.DelayedNormalizedIops      | virtual-disk         | NIOPSDelayed         |
+| Virtual SCSI IOPS       | Read IOPS               | VirtualDisk.NormalizedIopsRead         | vscsi                | iopsRead             |
+| Virtual SCSI IOPS       | Write IOPS              | VirtualDisk.NormalizedIopsWrite        | vscsi                | iopsWrite            |
+| Virtual SCSI Throughput | Read Throughput         | VirtualDisk.NormalizedIopsDelayedRead  | vscsi                | throughputRead       |
+| Virtual SCSI Throughput | Write Throughput        | VirtualDisk.NormalizedIopsDelayedWrite | vscsi                | throughputWrite      |
+| Virtual SCSI Latency    | Read Latency            | (NOT CURRENTLY IN POWERCLI)            | vscsi                | latencyRead          |
+| Virtual SCSI Latency    | Write Latency           | (NOT CURRENTLY IN POWERCLI)            | vscsi                | latencyWrite         |
 
 ### PowerCLI Sample for VM: vSAN Virtual Disk
 
